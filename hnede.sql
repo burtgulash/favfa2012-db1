@@ -13,17 +13,18 @@ FROM
 	INNER JOIN Vypujcka
 	ON idZakaznik = Zakaznik_idZakaznik
 
-	INNER JOIN ZapujcenaPolozka
+	INNER JOIN ZapujcenaPonozka
 	ON idVypujcka = Vypujcka_idVypujcka
 
-	INNER_JOIN Ponozka
+	INNER JOIN Ponozka
 	ON idPonozka = Ponozka_idPonozka
 
-	INNER_JOIN Barva
+	INNER JOIN Barva
 	ON idBarva = Barva_idBarva
 
 WHERE 
-	AND Barva.Barva =  'hnědá'
+	Barva =  'hnědá'
 
 ORDER BY
 	Prijmeni
+;

@@ -21,3 +21,4 @@ GROUP BY idZakaznik
 HAVING c > 1
 
 ORDER BY c DESC
+;
