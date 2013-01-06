@@ -75,12 +75,15 @@ tenhle údaj nemohli zaznamenat, protože se jedná o seznam ponožek, ne jen o
 jednu ponožku. Tedy tabulka má sloupce své id, cizí klíče ponožky a výpůjčky,
 žádné další informace neobsahuje.
 
+\clearpage
 \section{Dotazy}
 \subsection{Zákazníci milující hnědé ponožky}
 Výsledkem prvního z dotazů je seznam všech zákazníků, kteří jsou evidováni, že
 si někdy vypůjčili pár ponožek hnědé barvy. Dotaz spojuje všechny tabulky
 databáze mimo tabulky obsluhujícího do jedné pomocí $INNER JOIN$u a filtruje na
 základě barvy ponožek.
+
+\subsubsection{SQL kód}
 \begin{verbatim}
 SELECT 
 	Prijmeni, 
@@ -104,12 +107,27 @@ ORDER BY
 	Prijmeni ;
 \end{verbatim}
 
+\subsubsection{Výstup dotazu}
+\begin{verbatim}
++----------+---------+------------------+---------+---------+
+| Prijmeni | Jmeno   | Znacka           | Model   | Barva   |
++----------+---------+------------------+---------+---------+
+| Blažek   | Josef   | Nanohu           | Nabosou | hnědá   |
+| Robota   | Ondřej  | Nanohu           | Nabosou | hnědá   |
+| Robota   | Ondřej  | Česká Ponožka    | Houska  | hnědá   |
+| Robota   | Ondřej  | Nanohu           | Nabosou | hnědá   |
+| Turková  | Karla   | Česká Ponožka    | Houska  | hnědá   |
++----------+---------+------------------+---------+---------+
+\end{verbatim}
+
 \subsection{Zákazníci a obsluhující, kteří se nevidí poprvé}
 Další dotaz demonstruje využití agregačních funkcí jazyka SQL v příkladě, kdy
 hledáme všechny zákazníky a obsluhující, u nichž existuje více než jedna
 výpůjčka, na níž se podíleli konkrétní zákazník a obsluhující. Zkrátka, pokud
 přišel zákazník podruhé a byl obsloužen stejným člověkem jako minule, bude
 obsažen ve výsledku tohoto dotazu.
+
+\subsubsection{SQL kód}
 \begin{verbatim}
 SELECT 
 	Zakaznik.Jmeno, 
@@ -128,7 +146,23 @@ HAVING c > 1
 ORDER BY c DESC ;
 \end{verbatim}
 
-\section{Implementace}
+\subsubsection{Výstup dotazu}
+\begin{verbatim}
++-------------+-------------+---+-------+----------+
+| Jmeno       | Prijmeni    | c | Jmeno | Prijmeni |
++-------------+-------------+---+-------+----------+
+| Štěpánka    | Ponožková   | 4 | Jan   | Dub      |
+| Hubert      | Bazén       | 2 | Jan   | Dub      |
+| Van         | Li          | 2 | Jana  | Buková   |
+| Josef       | Blažek      | 2 | Jan   | Dub      |
+| Arnold      | Varný       | 2 | Jan   | Dub      |
+| Ondřej      | Robota      | 2 | Jana  | Buková   |
++-------------+-------------+---+-------+----------+
+\end{verbatim}
+
+
+\clearpage
+\section{Použité prostředí}
 Pro práci bylo zvoleno prostředí MySql. ERR model byl vytvořen v aplikaci {\bf
 mysql-workbench}. Databázové schéma bylo na lokálním serveru vytvořeno v téže
 aplikaci a data vložena pomocí {\bf phpmyadmin}, ale pro zrekonstruování

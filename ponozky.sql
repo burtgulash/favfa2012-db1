@@ -91,15 +91,13 @@ ENGINE = InnoDB;
 CREATE  TABLE IF NOT EXISTS `PujcovnaPonozek`.`ZapujcenaPonozka` (
   `idZapujcenaPonozka` INT NOT NULL AUTO_INCREMENT ,
   `Vypujcka_idVypujcka` INT NOT NULL ,
-  `Vypujcka_Zakaznik_idZakaznik` INT NOT NULL ,
-  `Vypujcka_Obsluhujici_idObsluhujici` INT NOT NULL ,
   `Ponozka_idPonozka` INT NOT NULL ,
-  PRIMARY KEY (`idZapujcenaPonozka`, `Vypujcka_idVypujcka`, `Vypujcka_Zakaznik_idZakaznik`, `Vypujcka_Obsluhujici_idObsluhujici`, `Ponozka_idPonozka`) ,
-  INDEX `fk_ZapujcenaPonozka_Vypujcka1` (`Vypujcka_idVypujcka` ASC, `Vypujcka_Zakaznik_idZakaznik` ASC, `Vypujcka_Obsluhujici_idObsluhujici` ASC) ,
-  INDEX `fk_ZapujcenaPonozka_Ponozka1` (`Ponozka_idPonozka` ASC) ,
+  PRIMARY KEY (`idZapujcenaPonozka`, `Vypujcka_idVypujcka`, `Ponozka_idPonozka`) ,
+  INDEX `fk_ZapujcenaPonozka_Vypujcka` (`Vypujcka_idVypujcka` ASC) ,
+  INDEX `fk_ZapujcenaPonozka_Ponozka` (`Ponozka_idPonozka` ASC) ,
   CONSTRAINT `fk_ZapujcenaPonozka_Vypujcka1`
-    FOREIGN KEY (`Vypujcka_idVypujcka` , `Vypujcka_Zakaznik_idZakaznik` , `Vypujcka_Obsluhujici_idObsluhujici` )
-    REFERENCES `PujcovnaPonozek`.`Vypujcka` (`idVypujcka` , `Zakaznik_idZakaznik` , `Obsluhujici_idObsluhujici` )
+    FOREIGN KEY (`Vypujcka_idVypujcka` )
+    REFERENCES `PujcovnaPonozek`.`Vypujcka` (`idVypujcka` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_ZapujcenaPonozka_Ponozka1`

@@ -1,5 +1,7 @@
 -- Všichni zákazníci a jejich hnědé ponožky.
 
+USE PujcovnaPonozek;
+
 SELECT 
 	Prijmeni, 
 	Jmeno, 

@@ -1,5 +1,7 @@
 -- Zákazníci, kteří se s některým z obsluhujících setkali více než jednou.
 
+USE PujcovnaPonozek;
+
 SELECT 
 	Zakaznik.Jmeno, 
 	Zakaznik.Prijmeni, 
